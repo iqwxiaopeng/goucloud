@@ -1,0 +1,19 @@
+server:
+  port: 6001 # 服务端口
+
+eureka:
+  instance:
+    hostname: localhost # eureka服务端的实例名称
+  client:
+    registerWithEureka: false # 服务注册，false表示不将自已注册到Eureka服务中(本服务自己就是注册中心)
+    fetchRegistry: false # 服务发现，false表示自己不从Eureka服务中获取注册信息(其他服务会调用自己发现其他微服务)
+    serviceUrl:    # Eureka客户端与Eureka服务端的交互地址，集群版配置对方的地址，单机版配置自己（如果不配置则默认本机8761端口） 其他服务通过本地址访问注册中心
+      # 单机版
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      #集群版  配置其他的Eureka Server服务端访问地址,多个地址以逗号分隔
+      #defaultZone: http://${eureka.instance.hostname}:6002/eureka/
+  server:
+    enable-self-preservation: false # 禁用自我保护机制
+    #自我保护机制介绍：
+    #当Eureka Server在短时间内丢失过多客户端时（可能发生了网络故障），此时Eureka Server会进入自保护模式，一旦进入该模式，Eureka Server就会保护服务注册表中
+    #的信息，不再删除服务注册表中的数据（也就是不会注销任何微服务）。当网络故障恢复后，该Eureka Server会自动退出自我保护模式。

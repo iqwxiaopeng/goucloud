@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>goucloud</artifactId>
+        <groupId>org.iqw</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>gou-dashboard</artifactId>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+<!--        1.在需要监控的服务pom.xml 中的dependencies 节点中新增spring-boot-starter-actuator 监控依赖，-->
+<!--        以开启监控相关的端点，并确保已经引入断路器的依赖spring-cloud-starter-netflix-hystrix-->
+<!--        2. 在需要监控的服务 application.yml 配制中添加暴露端点-->
+        <!--导入 hystrix 与 hystrix-dashboard 依赖  基于hystrix进行服务监控 查看各种接口调用情况-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+        </dependency>
+
+    </dependencies>
+</project>

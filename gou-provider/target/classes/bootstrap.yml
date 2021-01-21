@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    config:
+      name: gou-provider #github上的配置名称，注意没有yml后缀名
+      profile: dev   #本次访问的环境配置项 例如 {name}-{profile} = gou-register-dev.yml
+      #label: master   #远程库的分支名 这里是本地文件
+      uri: http://localhost:5001 #Config配置中心地址，通过它获取gou-register-dev.yml配置信息
+    bus: #允许消息总线动态更新
+      enabled: true
+      trace:
+        enabled: true
+  #rabbitmq相关配置信息 装这个主要是为了使用动态配置
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+#  暴露触发消息总线的地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh,hystrix.stream

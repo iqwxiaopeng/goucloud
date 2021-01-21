@@ -1,0 +1,24 @@
+server:
+  port: 5001
+
+spring:
+  application:
+    name: gou-config
+  profiles:
+    active: native #这个配置是说使用本地配置文件 而不是git
+  cloud:
+    config:
+      server:
+        #这里使用本地文件作为配置关于如何使用本地配置文件  https://blog.csdn.net/u010176542/article/details/80211947
+        native:
+          searchLocations: E:/java_work/cloudconfig
+#不使用远程git仓库
+#        git: # 远程库的git地址
+#          uri: https://github.com/mengxuegu/microservice-cloud-config.git
+
+##  暴露触发消息总线的地址
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: bus-refresh
